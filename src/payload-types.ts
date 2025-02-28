@@ -158,7 +158,7 @@ export interface Media {
  */
 export interface Technology {
   id: number;
-  label?: string | null;
+  label: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -168,11 +168,11 @@ export interface Technology {
  */
 export interface Job {
   id: number;
-  since?: string | null;
+  since: string;
   to?: string | null;
-  company?: string | null;
-  position?: string | null;
-  description?: {
+  company: string;
+  position: string;
+  description: {
     root: {
       type: string;
       children: {
@@ -186,8 +186,8 @@ export interface Job {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
-  badges?: (number | null) | Technology;
+  };
+  technologies: (number | Technology)[];
   updatedAt: string;
   createdAt: string;
 }
@@ -308,7 +308,7 @@ export interface JobsSelect<T extends boolean = true> {
   company?: T;
   position?: T;
   description?: T;
-  badges?: T;
+  technologies?: T;
   updatedAt?: T;
   createdAt?: T;
 }

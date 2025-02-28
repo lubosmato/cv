@@ -7,28 +7,33 @@ export const Jobs: CollectionConfig = {
     {
       name: "since",
       type: "date",
+      required: true,
     },
     {
       name: "to",
       type: "date",
-      required: false,
     },
     {
       name: "company",
       type: "text",
+      required: true,
     },
     {
       name: "position",
       type: "text",
+      required: true,
     },
     {
       name: "description",
       type: "richText",
+      required: true,
     },
     {
-      name: "badges",
+      name: "technologies",
       type: "relationship",
-      relationTo: "technologies"
+      relationTo: "technologies",
+      hasMany: true,
+      required: true,
     },
   ],
 }

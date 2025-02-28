@@ -144,3 +144,13 @@
     max-width: none;
   }
 }
+
+.list-bullet {
+  @apply list-disc;
+  @apply pl-5;
+
+  >li {
+    @apply pl-2;
+    @apply mt-1;
+  }
+}

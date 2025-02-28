@@ -3,19 +3,18 @@ import { Education } from "@/components/Education"
 import { Header } from "@/components/Header"
 import { KeyProjects } from "@/components/KeyProjects"
 import { Languages } from "@/components/Languages"
+import { PrintPageBreak } from "@/components/PrintPageBreak"
 import { ProfessionalSummary } from "@/components/ProfessionalSummary"
 import { Skills } from "@/components/Skills"
 import { WorkExperience } from "@/components/WorkExperience"
-import config from '@/payload.config'
+import { getPayload } from "@/lib/payload"
 import { headers as getHeaders } from "next/headers"
-import { getPayload } from "payload"
 import { fileURLToPath } from "url"
 
 export default async function CV() {
 
   const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
+  const payload = await getPayload()
   const { user } = await payload.auth({ headers })
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
@@ -35,32 +34,12 @@ export default async function CV() {
   const professionalSummary =
     "Experienced software engineer with over 8 years of expertise in full-stack development, specializing in React, Node.js, and cloud infrastructure. Proven track record of delivering scalable applications and leading development teams to success. Passionate about clean code, performance optimization, and creating exceptional user experiences."
 
-  const workExperience = [
-    {
-      date: "Jan 2020 - Present",
-      company: "Tech Innovations Inc.",
-      title: "Senior Software Engineer",
-      description:
-        "Led a team of 5 developers to build and maintain a SaaS platform serving 50,000+ users. Architected and implemented microservices using Node.js, Express, and MongoDB. Reduced application load time by 40% through performance optimization techniques.",
-      skills: ["React", "Node.js", "TypeScript", "MongoDB", "AWS"],
-    },
-    {
-      date: "Mar 2017 - Dec 2019",
-      company: "Digital Solutions LLC",
-      title: "Full Stack Developer",
-      description:
-        "Developed responsive web applications using React, Redux, and TypeScript. Built RESTful APIs with Node.js and Express, integrated with PostgreSQL databases. Collaborated with UX designers and mentored junior developers.",
-      skills: ["React", "Redux", "TypeScript", "PostgreSQL"],
-    },
-    {
-      date: "Jun 2015 - Feb 2017",
-      company: "WebCraft Studios",
-      title: "Junior Web Developer",
-      description:
-        "Developed and maintained client websites using HTML, CSS, JavaScript, and PHP. Implemented responsive designs and ensured cross-browser compatibility. Assisted in migrating legacy applications to modern frameworks.",
-      skills: ["HTML/CSS", "JavaScript", "PHP", "jQuery"],
-    },
-  ]
+
+  const jobs = await payload.find({
+    collection: "jobs",
+    sort: "-since",
+    depth: 1,
+  })
 
   const education = [
     {
@@ -135,7 +114,7 @@ export default async function CV() {
         {/* Left Column */}
         <div className="lg:col-span-2">
           <ProfessionalSummary summary={professionalSummary} />
-          <WorkExperience jobs={workExperience} />
+          <WorkExperience jobs={jobs} />
         </div>
 
         {/* Right Column */}
@@ -147,8 +126,7 @@ export default async function CV() {
         </div>
       </div>
 
-      {/* Page break control for printing */}
-      <div className="hidden print:block print:page-break-before print:mt-8"></div>
+      <PrintPageBreak />
 
       <KeyProjects projects={keyProjects} />
 
