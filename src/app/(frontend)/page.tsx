@@ -1,5 +1,5 @@
 import { Certifications } from "@/components/Certifications"
-import { Education } from "@/components/Education"
+import { Educations } from "@/components/Education"
 import { Header } from "@/components/Header"
 import { KeyProjects } from "@/components/KeyProjects"
 import { Languages } from "@/components/Languages"
@@ -31,30 +31,15 @@ export default async function CV() {
     },
   }
 
-  const professionalSummary =
-    "Experienced software engineer with over 8 years of expertise in full-stack development, specializing in React, Node.js, and cloud infrastructure. Proven track record of delivering scalable applications and leading development teams to success. Passionate about clean code, performance optimization, and creating exceptional user experiences."
 
-
+  const profile = await payload.findGlobal({ slug: "profile", depth: 1 })
   const jobs = await payload.find({
     collection: "jobs",
     sort: "-since",
     depth: 1,
   })
 
-  const education = [
-    {
-      date: "2013 - 2015",
-      degree: "Master of Computer Science",
-      institution: "Stanford University",
-      details: "Specialized in Artificial Intelligence and Machine Learning",
-    },
-    {
-      date: "2009 - 2013",
-      degree: "Bachelor of Science in Computer Engineering",
-      institution: "University of California, Berkeley",
-      details: "Graduated with Honors, GPA: 3.8/4.0",
-    },
-  ]
+  const educations = await payload.find({ collection: "educations" })
 
   const skills = [
     { name: "JavaScript/TypeScript", level: 95 },
@@ -108,18 +93,18 @@ export default async function CV() {
 
   return (
     <div className="bg-white text-gray-800 min-h-screen p-4 sm:p-6 md:p-8 mx-auto print:p-0 print-container max-w-6xl">
-      <Header {...personalInfo} />
+      <Header />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 print:gap-6">
         {/* Left Column */}
         <div className="lg:col-span-2">
-          <ProfessionalSummary summary={professionalSummary} />
+          <ProfessionalSummary />
           <WorkExperience jobs={jobs} />
         </div>
 
         {/* Right Column */}
         <div>
-          <Education education={education} />
+          <Educations educations={educations.docs} />
           <Skills skills={skills} />
           <Languages languages={languages} />
           <Certifications certifications={certifications} />
