@@ -32,31 +32,15 @@ export default async function CV() {
   }
 
 
-  const profile = await payload.findGlobal({ slug: "profile", depth: 1 })
   const jobs = await payload.find({
     collection: "jobs",
     sort: "-since",
     depth: 1,
   })
-
   const educations = await payload.find({ collection: "educations" })
+  const skills = await payload.find({ collection: "skills", sort: "-percentage" })
 
-  const skills = [
-    { name: "JavaScript/TypeScript", level: 95 },
-    { name: "React & React Native", level: 90 },
-    { name: "Node.js", level: 85 },
-    { name: "HTML/CSS", level: 90 },
-    { name: "SQL & NoSQL Databases", level: 80 },
-    { name: "AWS/Cloud Services", level: 75 },
-    { name: "Docker & Kubernetes", level: 70 },
-    { name: "CI/CD", level: 80 },
-  ]
-
-  const languages = [
-    { name: "English", level: "Native", proficiency: 100 },
-    { name: "Spanish", level: "Fluent", proficiency: 85 },
-    { name: "French", level: "Intermediate", proficiency: 60 },
-  ]
+  const languages = await payload.find({ collection: "languages", sort: "-proficiency" })
 
   const certifications = [
     "AWS Certified Solutions Architect",
@@ -105,8 +89,8 @@ export default async function CV() {
         {/* Right Column */}
         <div>
           <Educations educations={educations.docs} />
-          <Skills skills={skills} />
-          <Languages languages={languages} />
+          <Skills skills={skills.docs} />
+          <Languages languages={languages.docs} />
           <Certifications certifications={certifications} />
         </div>
       </div>

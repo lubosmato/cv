@@ -71,6 +71,8 @@ export interface Config {
     technologies: Technology;
     jobs: Job;
     educations: Education;
+    skills: Skill;
+    languages: Language;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -82,6 +84,8 @@ export interface Config {
     technologies: TechnologiesSelect<false> | TechnologiesSelect<true>;
     jobs: JobsSelect<false> | JobsSelect<true>;
     educations: EducationsSelect<false> | EducationsSelect<true>;
+    skills: SkillsSelect<false> | SkillsSelect<true>;
+    languages: LanguagesSelect<false> | LanguagesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -213,6 +217,29 @@ export interface Education {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills".
+ */
+export interface Skill {
+  id: number;
+  label: string;
+  percentage: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "languages".
+ */
+export interface Language {
+  id: number;
+  name: string;
+  level: string;
+  proficiency: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -237,6 +264,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'educations';
         value: number | Education;
+      } | null)
+    | ({
+        relationTo: 'skills';
+        value: number | Skill;
+      } | null)
+    | ({
+        relationTo: 'languages';
+        value: number | Language;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -346,6 +381,27 @@ export interface EducationsSelect<T extends boolean = true> {
   title?: T;
   subtitle?: T;
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills_select".
+ */
+export interface SkillsSelect<T extends boolean = true> {
+  label?: T;
+  percentage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "languages_select".
+ */
+export interface LanguagesSelect<T extends boolean = true> {
+  name?: T;
+  level?: T;
+  proficiency?: T;
   updatedAt?: T;
   createdAt?: T;
 }
