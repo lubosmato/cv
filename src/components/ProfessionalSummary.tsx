@@ -9,9 +9,7 @@ export async function ProfessionalSummary() {
   return (
     <section className="mb-8 print:mb-6">
       <h2 className="text-xl font-bold mb-4 pb-1 border-b text-primary">Professional Summary</h2>
-      <div className="rich-text">
-        <RichText className="text-gray-700 text-sm sm:text-base" data={profile.summary} />
-      </div>
+      <RichText className="text-gray-700 text-sm sm:text-base rich-text" data={profile.summary} />
     </section>
   )
 }

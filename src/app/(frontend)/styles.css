@@ -146,12 +146,10 @@
 }
 
 .list-bullet {
-  @apply list-disc;
-  @apply pl-5;
+  @apply list-disc pl-5;
 
   >li {
-    @apply pl-2;
-    @apply mt-1;
+    @apply pl-1 mt-1;
   }
 }
 
@@ -159,4 +157,10 @@
   p {
     @apply mb-2;
   }
+
+  a {
+    @apply underline hover:no-underline;
+  }
+
+  @apply text-balance;
 }

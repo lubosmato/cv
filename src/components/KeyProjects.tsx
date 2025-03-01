@@ -1,32 +1,61 @@
 import { Card, CardContent } from "@/components/ui/card"
+import { Project } from "@/payload-types"
+import { Technologies } from "./Technologies"
+import { RichText } from "@payloadcms/richtext-lexical/react"
+import clsx from "clsx"
+import dayjs from "dayjs"
+import Image from "next/image"
 
-interface Project {
-  title: string
-  description: string
-  technologies: string[]
-}
-
-interface KeyProjectsProps {
-  projects: Project[]
-}
-
-export function KeyProjects({ projects }: KeyProjectsProps) {
+export function KeyProjects({ projects }: { projects: Project[] }) {
   return (
     <section>
-      <h2 className="text-xl font-bold mb-4 pb-1 border-b text-primary">Key Projects</h2>
+      <h2 className="text-xl font-bold mb-4 pb-1 border-b text-primary">Projects</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="columns-2 gap-4 space-y-4">
         {projects.map((project, index) => (
-          <Card key={index} className="shadow-md">
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold text-primary mb-2">{project.title}</h3>
-              <p className="text-gray-700 mb-4 text-sm sm:text-base">{project.description}</p>
+          <Card key={index} className={clsx(
+            "shadow-md break-inside-avoid",
+            project.type === "professional" && "shadow-sm shadow-primary border-primary",
+            project.type === "hobby" && "shadow-gray-200"
+          )}
+          >
+
+            {typeof project.photo !== "number" && project?.photo?.url && (
+              <div className="w-full h-[300px] overflow-hidden rounded-t-xl">
+                <Image
+                  src={project.photo.url}
+                  alt={project.photo.alt}
+                  width={530}
+                  height={300}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+            )}
+
+            <CardContent className={clsx("p-6", project.photo && "pt-0")}>
+
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="text-xl font-bold text-primary">{project.title}</h3>
+                {project.date && (
+                  <span className="text-sm text-gray-400">{dayjs(project.date).format("MMM YYYY")}</span>
+                )}
+              </div>
+
+              <RichText className="text-gray-600 mb-4 rich-text" data={project.description} />
               <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech, techIndex) => (
-                  <span key={techIndex} className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">
-                    {tech}
-                  </span>
-                ))}
+                <Technologies technologies={project.technologies} />
+              </div>
+
+              <div className="mt-4">
+                <span className={clsx(
+                  "px-3 py-1 text-xs font-medium rounded-full",
+                  project.type === "professional"
+                    ? "bg-primary/10 text-primary"
+                    : "bg-gray-100 text-gray-800"
+                )}>
+                  {project.type === "professional" ? "Professional Project" : "Personal Project"}
+                </span>
               </div>
             </CardContent>
           </Card>

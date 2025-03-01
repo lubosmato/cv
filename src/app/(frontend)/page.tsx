@@ -8,29 +8,9 @@ import { ProfessionalSummary } from "@/components/ProfessionalSummary"
 import { Skills } from "@/components/Skills"
 import { WorkExperience } from "@/components/WorkExperience"
 import { getPayload } from "@/lib/payload"
-import { headers as getHeaders } from "next/headers"
-import { fileURLToPath } from "url"
 
 export default async function CV() {
-
-  const headers = await getHeaders()
   const payload = await getPayload()
-  const { user } = await payload.auth({ headers })
-
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
-
-  const personalInfo = {
-    name: "John Doe",
-    title: "Senior Software Engineer",
-    contact: {
-      email: "john.doe@example.com",
-      phone: "+1 (555) 123-4567",
-      location: "San Francisco, CA",
-      linkedin: "linkedin.com/in/johndoe",
-      github: "github.com/johndoe",
-    },
-  }
-
 
   const jobs = await payload.find({
     collection: "jobs",
@@ -39,36 +19,9 @@ export default async function CV() {
   })
   const educations = await payload.find({ collection: "educations" })
   const skills = await payload.find({ collection: "skills", sort: "-percentage" })
-
   const languages = await payload.find({ collection: "languages", sort: "-proficiency" })
-
   const certifications = await payload.find({ collection: "certifications" })
-
-  const keyProjects = [
-    {
-      title: "E-commerce Platform Redesign",
-      description:
-        "Led the complete redesign and migration of a legacy e-commerce platform to a modern React/Node.js stack.",
-      technologies: ["React", "Node.js", "MongoDB", "AWS"],
-    },
-    {
-      title: "Real-time Analytics Dashboard",
-      description: "Developed a real-time analytics dashboard for monitoring system performance and user behavior.",
-      technologies: ["D3.js", "WebSockets", "Redis", "Express"],
-    },
-    {
-      title: "Mobile Payment Application",
-      description:
-        "Built a secure mobile payment application with React Native, integrating with multiple payment gateways.",
-      technologies: ["React Native", "Firebase", "Stripe API", "OAuth"],
-    },
-    {
-      title: "DevOps Infrastructure Automation",
-      description:
-        "Implemented infrastructure as code and automated deployment pipelines, reducing deployment time by 70%.",
-      technologies: ["Terraform", "Docker", "Kubernetes", "GitHub Actions"],
-    },
-  ]
+  const projects = await payload.find({ collection: "projects", sort: ["-type", "-date"] })
 
   return (
     <div className="bg-white text-gray-800 min-h-screen p-4 sm:p-6 md:p-8 mx-auto print:p-0 print-container max-w-6xl">
@@ -92,7 +45,7 @@ export default async function CV() {
 
       <PrintPageBreak />
 
-      <KeyProjects projects={keyProjects} />
+      <KeyProjects projects={projects.docs} />
 
       {/* Footer */}
       <footer className="mt-8 pt-4 border-t text-center text-gray-500 text-sm print:mt-6">

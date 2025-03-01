@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime"
 import { PrintPageBreak } from "./PrintPageBreak";
 import { Card, CardContent } from "./ui/card";
+import { Technologies } from "./Technologies";
 
 dayjs.extend(relativeTime)
 
@@ -22,13 +23,9 @@ export function JobCard({ job }: { job: Job }) {
           <div className="text-gray-400 text-sm mb-1">{since.format("MMM YYYY")} - {to.format("MMM YYYY")}</div>
           <h4 className="text-lg mb-1">{job.company}</h4>
           <h3 className="text-xl font-bold mb-3">{job.position}</h3>
-          <RichText className="text-gray-600 mb-4" data={job.description} />
+          <RichText className="text-gray-600 mb-4 rich-text" data={job.description} />
           <div className="flex flex-wrap gap-2">
-            {job.technologies?.filter(t => typeof t !== "number").map((technology, technologyIndex) => (
-              <span key={technologyIndex} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
-                {technology.label}
-              </span>
-            ))}
+            <Technologies technologies={job.technologies} />
           </div>
         </CardContent>
       </Card>
