@@ -73,6 +73,7 @@ export interface Config {
     educations: Education;
     skills: Skill;
     languages: Language;
+    certifications: Certification;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -86,6 +87,7 @@ export interface Config {
     educations: EducationsSelect<false> | EducationsSelect<true>;
     skills: SkillsSelect<false> | SkillsSelect<true>;
     languages: LanguagesSelect<false> | LanguagesSelect<true>;
+    certifications: CertificationsSelect<false> | CertificationsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -240,6 +242,17 @@ export interface Language {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "certifications".
+ */
+export interface Certification {
+  id: number;
+  label: string;
+  link?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -272,6 +285,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'languages';
         value: number | Language;
+      } | null)
+    | ({
+        relationTo: 'certifications';
+        value: number | Certification;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -402,6 +419,16 @@ export interface LanguagesSelect<T extends boolean = true> {
   name?: T;
   level?: T;
   proficiency?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "certifications_select".
+ */
+export interface CertificationsSelect<T extends boolean = true> {
+  label?: T;
+  link?: T;
   updatedAt?: T;
   createdAt?: T;
 }

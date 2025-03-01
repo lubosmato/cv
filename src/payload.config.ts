@@ -13,9 +13,10 @@ import { Media } from './collections/Media'
 import { Technologies } from './collections/Technology'
 import { Jobs } from './collections/Jobs'
 import { Profile } from './app/globals/Profile'
-import { Educations } from './collections/Education'
+import { Educations } from './collections/Educations'
 import { Skills } from './collections/Skills'
 import { Languages } from './collections/Languages'
+import { Certifications } from './collections/Certifications'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -28,7 +29,7 @@ export default buildConfig({
     },
   },
   globals: [Profile],
-  collections: [Users, Media, Technologies, Jobs, Educations, Skills, Languages],
+  collections: [Users, Media, Technologies, Jobs, Educations, Skills, Languages, Certifications],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

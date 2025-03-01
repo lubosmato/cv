@@ -1,5 +1,5 @@
 import { Certifications } from "@/components/Certifications"
-import { Educations } from "@/components/Education"
+import { Educations } from "@/components/Educations"
 import { Header } from "@/components/Header"
 import { KeyProjects } from "@/components/KeyProjects"
 import { Languages } from "@/components/Languages"
@@ -42,12 +42,7 @@ export default async function CV() {
 
   const languages = await payload.find({ collection: "languages", sort: "-proficiency" })
 
-  const certifications = [
-    "AWS Certified Solutions Architect",
-    "Google Cloud Professional Developer",
-    "MongoDB Certified Developer",
-    "Certified Scrum Master",
-  ]
+  const certifications = await payload.find({ collection: "certifications" })
 
   const keyProjects = [
     {
@@ -91,7 +86,7 @@ export default async function CV() {
           <Educations educations={educations.docs} />
           <Skills skills={skills.docs} />
           <Languages languages={languages.docs} />
-          <Certifications certifications={certifications} />
+          <Certifications certifications={certifications.docs} />
         </div>
       </div>
 
