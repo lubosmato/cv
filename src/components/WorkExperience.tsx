@@ -4,7 +4,7 @@ import { JobCard } from "./JobCard"
 
 export async function WorkExperience({ jobs }: { jobs: PaginatedDocs<Job> }) {
   return (
-    <section className="mb-8 print:mb-6">
+    <section>
       <h2 className="text-xl font-bold mb-4 pb-1 border-b text-primary">Work Experience</h2>
 
       <div className="relative space-y-6">
