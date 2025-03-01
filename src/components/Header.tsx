@@ -17,7 +17,7 @@ export async function Header() {
               alt={photo.alt}
               width={160}
               height={160}
-              className="object-cover"
+              className="object-cover w-full h-full"
               priority
             />}
         </div>
