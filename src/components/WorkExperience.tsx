@@ -1,9 +1,5 @@
-import { Card, CardContent } from "@/components/ui/card"
 import { Job } from "@/payload-types"
-import { RichText } from '@payloadcms/richtext-lexical/react'
 import { PaginatedDocs } from "payload"
-import dayjs from "dayjs"
-import { PrintPageBreak } from "./PrintPageBreak"
 import { JobCard } from "./JobCard"
 
 export async function WorkExperience({ jobs }: { jobs: PaginatedDocs<Job> }) {
