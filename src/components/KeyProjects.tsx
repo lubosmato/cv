@@ -12,7 +12,7 @@ interface KeyProjectsProps {
 
 export function KeyProjects({ projects }: KeyProjectsProps) {
   return (
-    <section className="mt-8 print:mt-0">
+    <section>
       <h2 className="text-xl font-bold mb-4 pb-1 border-b text-primary">Key Projects</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

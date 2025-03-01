@@ -8,7 +8,7 @@ export async function Header() {
   const photo = typeof profile.photo !== "number" ? profile.photo : null
 
   return (
-    <header className="flex flex-col sm:flex-row gap-6 mb-8 pb-6 border-b print:pb-4">
+    <header className="flex flex-col sm:flex-row gap-6 mb-8 print:pb-4">
       <div className="flex-shrink-0 mx-auto sm:mx-0">
         <div className="relative w-32 h-32 sm:w-40 sm:h-40 overflow-hidden rounded-lg border-2 border-gray-200">
           {photo && photo.url &&
@@ -49,7 +49,7 @@ export async function Header() {
           </div>
         </div>
       </div>
-    </header >
+    </header>
   )
 }
 
