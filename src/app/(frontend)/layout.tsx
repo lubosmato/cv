@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const profileImageUrl = (typeof profile.photo !== "number" ? profile.photo.url : null) ?? null
 
   return {
-    title: `Curriculum vitae ${profile.name} - ${profile.profession}`,
+    title: `Resume: ${profile.name} - ${profile.profession}`,
     description: "Software engineer passionate about technology, innovation, and software development.",
     authors: [{ name: profile.name }],
     creator: profile.name,
@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
       telephone: true,
     },
     openGraph: {
-      title: `Curriculum vitae ${profile.name} - ${profile.profession}`,
+      title: `Resume: ${profile.name} - ${profile.profession}`,
       description: "Software engineer passionate about technology, innovation, and software development.",
       siteName: `${profile.name} - ${profile.profession}`,
       locale: 'en_US',

@@ -542,6 +542,8 @@ export interface Profile {
     [k: string]: unknown;
   };
   photo: number | Media;
+  altPhoto: number | Media;
+  altProfession: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -559,6 +561,8 @@ export interface ProfileSelect<T extends boolean = true> {
   linkedinHandle?: T;
   summary?: T;
   photo?: T;
+  altPhoto?: T;
+  altProfession?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

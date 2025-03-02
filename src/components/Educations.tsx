@@ -4,7 +4,7 @@ import dayjs from "dayjs"
 
 export function Educations({ educations }: { educations: Education[] }) {
   return (
-    <section className="mb-8 print:mb-6">
+    <section className="mb-8 print:mb-6 break-inside-avoid">
       <h2 className="text-xl font-bold mb-4 pb-1 border-b text-primary">Education</h2>
 
       <div className="space-y-4">

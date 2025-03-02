@@ -2,18 +2,18 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Project } from "@/payload-types"
 import { Technologies } from "./Technologies"
 import { RichText } from "@payloadcms/richtext-lexical/react"
-import clsx from "clsx"
 import dayjs from "dayjs"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 
 export function KeyProjects({ projects }: { projects: Project[] }) {
   return (
-    <section>
+    <section className="break-inside-avoid">
       <h2 className="text-xl font-bold mt-8 mb-4 pb-1 border-b text-primary">Projects</h2>
 
-      <div className="md:columns-2 columns-1 gap-4 space-y-4">
+      <div className="md:columns-2 columns-1 gap-4 space-y-4 print:sm:columns-2">
         {projects.map((project, index) => (
-          <Card key={index} className={clsx(
+          <Card key={index} className={cn(
             "shadow-md break-inside-avoid",
             project.type === "professional" && "shadow-sm shadow-primary border-primary",
             project.type === "hobby" && "shadow-gray-200"
@@ -33,7 +33,7 @@ export function KeyProjects({ projects }: { projects: Project[] }) {
               </div>
             )}
 
-            <CardContent className={clsx("p-6", project.photo && "pt-0")}>
+            <CardContent className={cn("p-6", project.photo && "pt-0")}>
 
               <div className="flex justify-between items-start mb-3">
                 <h3 className="text-xl font-bold text-primary">{project.title}</h3>
@@ -48,7 +48,7 @@ export function KeyProjects({ projects }: { projects: Project[] }) {
               </div>
 
               <div className="mt-4">
-                <span className={clsx(
+                <span className={cn(
                   "px-3 py-1 text-xs font-medium rounded-full",
                   project.type === "professional"
                     ? "bg-primary/10 text-primary"

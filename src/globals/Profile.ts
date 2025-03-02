@@ -48,6 +48,17 @@ export const Profile: GlobalConfig = {
       type: "relationship",
       relationTo: "media",
       required: true,
-    }
+    },
+    {
+      name: "altPhoto",
+      type: "relationship",
+      relationTo: "media",
+      required: true,
+    },
+    {
+      name: "altProfession",
+      type: "text",
+      required: true,
+    },
   ],
 }

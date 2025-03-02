@@ -3,7 +3,7 @@ import { Skill } from "@/payload-types"
 
 export function Skills({ skills }: { skills: Skill[] }) {
   return (
-    <section className="mb-8 print:mb-6">
+    <section className="mb-8 print:mb-6 break-inside-avoid">
       <h2 className="text-xl font-bold mb-4 pb-1 border-b text-primary">Skills</h2>
 
       <div className="space-y-3">
