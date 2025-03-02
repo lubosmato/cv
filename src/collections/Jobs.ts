@@ -1,7 +1,11 @@
+import { revalidatePath } from 'next/cache'
 import type { CollectionConfig } from 'payload'
 
 export const Jobs: CollectionConfig = {
   slug: 'jobs',
+  hooks: {
+    afterChange: [() => revalidatePath("/")]
+  },
   defaultSort: "since",
   fields: [
     {

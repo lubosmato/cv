@@ -1,7 +1,11 @@
+import { revalidatePath } from 'next/cache'
 import type { CollectionConfig } from 'payload'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
+  hooks: {
+    afterChange: [() => revalidatePath("/")]
+  },
   fields: [
     {
       name: "title",

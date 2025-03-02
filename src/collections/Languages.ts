@@ -1,7 +1,11 @@
+import { revalidatePath } from 'next/cache'
 import type { CollectionConfig } from 'payload'
 
 export const Languages: CollectionConfig = {
   slug: 'languages',
+  hooks: {
+    afterChange: [() => revalidatePath("/")]
+  },
   fields: [
     {
       name: "name",
