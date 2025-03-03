@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import React from 'react'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import './styles.css'
 import { getPayload } from '@/lib/payload'
@@ -51,6 +52,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body>
         <main>{children}</main>
+        <SpeedInsights />
       </body>
     </html>
   )
