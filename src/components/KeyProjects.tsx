@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 export function KeyProjects({ projects }: { projects: Project[] }) {
   return (
     <section className="break-inside-avoid">
-      <h2 className="text-xl font-bold mt-8 mb-4 pb-1 border-b text-primary">Projects</h2>
+      <h2 className="text-xl font-bold mt-8 mb-4 pb-1 border-b text-primary">Recent Projects</h2>
 
       <div className="md:columns-2 columns-1 gap-4 space-y-4 print:sm:columns-2">
         {projects.map((project, index) => (
