@@ -1,7 +1,11 @@
+import { revalidatePath } from 'next/cache'
 import { GlobalConfig } from 'payload'
 
 export const Profile: GlobalConfig = {
   slug: 'profile',
+  hooks: {
+    afterChange: [() => revalidatePath("/")]
+  },
   fields: [
     {
       name: "name",
