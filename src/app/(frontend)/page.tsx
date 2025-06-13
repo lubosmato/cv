@@ -20,7 +20,7 @@ export default async function CV() {
   const skills = await payload.find({ collection: "skills", sort: "-percentage" })
   const languages = await payload.find({ collection: "languages", sort: "-proficiency" })
   const certifications = await payload.find({ collection: "certifications" })
-  const projects = await payload.find({ collection: "projects", sort: ["-type", "date"] })
+  const projects = await payload.find({ collection: "projects", sort: ["-type", "-date"] })
 
   return (
     <div className="bg-white text-gray-800 min-h-screen p-4 sm:p-6 md:p-8 mx-auto print:pl-[1.5cm] print-container max-w-6xl">
