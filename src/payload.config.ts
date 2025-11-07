@@ -1,6 +1,6 @@
 // storage-adapter-import-placeholder
+import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres"
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
-import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
@@ -36,11 +36,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI || '',
-    },
-  }),
+  db: vercelPostgresAdapter(),
   sharp,
   plugins: [
     payloadCloudPlugin(),
