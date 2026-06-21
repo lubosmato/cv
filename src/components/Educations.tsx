@@ -11,10 +11,10 @@ export function Educations({ educations }: { educations: Education[] }) {
         {educations.map((item, index) => (
           <Card key={index} className="shadow-sm">
             <CardContent className="p-4">
-              <div className="text-gray-600 text-sm mb-1">{dayjs(item.since).year()} - {dayjs(item.to).year()}</div>
+              <div className="text-muted-foreground text-sm mb-1">{dayjs(item.since).year()} - {dayjs(item.to).year()}</div>
               <h3 className="text-lg font-bold mb-1">{item.title}</h3>
               <h4 className="text-base mb-1">{item.subtitle}</h4>
-              <p className="text-gray-700 text-sm">{item.description}</p>
+              <p className="text-foreground text-sm">{item.description}</p>
             </CardContent>
           </Card>
         ))}

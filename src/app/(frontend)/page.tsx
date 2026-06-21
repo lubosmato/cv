@@ -23,7 +23,7 @@ export default async function CV() {
   const projects = await payload.find({ collection: "projects", sort: ["-type", "-date"], pagination: false })
 
   return (
-    <div className="bg-white text-gray-800 min-h-screen p-4 sm:p-6 md:p-8 mx-auto print:pl-[1.5cm] print-container max-w-6xl">
+    <div className="bg-background text-foreground min-h-screen p-4 sm:p-6 md:p-8 mx-auto print:pl-[1.5cm] print-container max-w-6xl">
       <Header />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 print:sm:grid-cols-3 gap-8 print:gap-6">
@@ -42,7 +42,7 @@ export default async function CV() {
 
       <KeyProjects projects={projects.docs} />
 
-      <footer className="mt-8 pt-4 border-t text-center text-gray-500 text-sm print:mt-6">
+      <footer className="mt-8 pt-4 border-t text-center text-muted-foreground text-sm print:mt-6">
         <p>References available upon request</p>
       </footer>
     </div>

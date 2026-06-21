@@ -11,7 +11,7 @@ export async function Header() {
   return (
     <header className="flex flex-col sm:flex-row gap-6 mb-8 print:mb-3">
       <div className="flex-shrink-0 mx-auto sm:mx-0">
-        <div className="relative w-32 h-32 sm:w-40 sm:h-40 overflow-hidden rounded-lg border-2 border-gray-200 group">
+        <div className="relative w-32 h-32 sm:w-40 sm:h-40 overflow-hidden rounded-lg border-2 border-border group">
           {photo && photo.url && (
             <Image
               src={photo.url}
@@ -50,23 +50,23 @@ export async function Header() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <Mail className="w-4 h-4 text-gray-500 flex-shrink-0" />
+            <Mail className="w-4 h-4 text-muted-foreground flex-shrink-0" />
             <a href={`mailto:${profile.email}`} className="text-sm">{profile.email}</a>
           </div>
           <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <Phone className="w-4 h-4 text-gray-500 flex-shrink-0" />
+            <Phone className="w-4 h-4 text-muted-foreground flex-shrink-0" />
             <a href={`tel:${profile.phone}`} className="text-sm">{profile.phone}</a>
           </div>
           <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <MapPin className="w-4 h-4 text-gray-500 flex-shrink-0" />
+            <MapPin className="w-4 h-4 text-muted-foreground flex-shrink-0" />
             <span className="text-sm">{profile.place}</span>
           </div>
           <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <Linkedin className="w-4 h-4 text-gray-500 flex-shrink-0" />
+            <Linkedin className="w-4 h-4 text-muted-foreground flex-shrink-0" />
             <a href={`https://www.linkedin.com/in/${profile.linkedinHandle}/`} target="_blank" className="text-sm">linkedin/{profile.linkedinHandle}</a>
           </div>
           <div className="flex items-center gap-2 justify-center sm:justify-start">
-            <Github className="w-4 h-4 text-gray-500 flex-shrink-0" />
+            <Github className="w-4 h-4 text-muted-foreground flex-shrink-0" />
             <a href={`https://github.com/${profile.githubHandle}/`} target="_blank" className="text-sm">github/{profile.githubHandle}</a>
           </div>
         </div>
