@@ -8,7 +8,7 @@ import { getPayload } from '@/lib/payload'
 export async function generateMetadata(): Promise<Metadata> {
   const payload = await getPayload()
   const profile = await payload.findGlobal({ slug: "profile", depth: 1 })
-  const profileImageUrl = (typeof profile.photo !== "number" ? profile.photo.url : null) ?? null
+  const profileImageUrl = (typeof profile.photo !== "number" ? profile.photo?.url : null) ?? null
 
   return {
     title: `Resume: ${profile.name} - ${profile.profession}`,
