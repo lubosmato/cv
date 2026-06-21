@@ -16,7 +16,7 @@ export function KeyProjects({ projects }: { projects: Project[] }) {
           <Card key={index} className={cn(
             "shadow-md break-inside-avoid",
             project.type === "professional" && "shadow-sm shadow-primary border-primary",
-            project.type === "hobby" && "shadow-gray-200"
+            project.type === "hobby" && "shadow-border"
           )}
           >
 
@@ -38,11 +38,11 @@ export function KeyProjects({ projects }: { projects: Project[] }) {
               <div className="flex justify-between items-start mb-3">
                 <h3 className="text-xl font-bold text-primary">{project.title}</h3>
                 {project.date && (
-                  <span className="text-sm text-gray-400">{dayjs(project.date).format("MMM YYYY")}</span>
+                  <span className="text-sm text-muted-foreground">{dayjs(project.date).format("MMM YYYY")}</span>
                 )}
               </div>
 
-              <RichText className="text-gray-600 mb-4 rich-text" data={project.description} />
+              <RichText className="text-muted-foreground mb-4 rich-text" data={project.description} />
               <div className="flex flex-wrap gap-2">
                 <Technologies technologies={project.technologies} />
               </div>
@@ -52,7 +52,7 @@ export function KeyProjects({ projects }: { projects: Project[] }) {
                   "px-3 py-1 text-xs font-medium rounded-full",
                   project.type === "professional"
                     ? "bg-primary/10 text-primary"
-                    : "bg-gray-100 text-gray-800"
+                    : "bg-secondary text-secondary-foreground"
                 )}>
                   {project.type === "professional" ? "Professional Project" : "Personal Project"}
                 </span>

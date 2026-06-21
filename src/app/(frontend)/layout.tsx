@@ -4,6 +4,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import './styles.css'
 import { getPayload } from '@/lib/payload'
+import { Providers } from '@/components/Providers'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export async function generateMetadata(): Promise<Metadata> {
   const payload = await getPayload()
@@ -49,9 +51,12 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <main>{children}</main>
+        <Providers>
+          <ThemeToggle />
+          <main>{children}</main>
+        </Providers>
         <SpeedInsights />
       </body>
     </html>

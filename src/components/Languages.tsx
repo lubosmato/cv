@@ -20,7 +20,7 @@ export function Languages({ languages }: LanguagesProps) {
           <div key={index}>
             <div className="flex justify-between mb-1">
               <span className="font-medium text-sm sm:text-base">{language.name}</span>
-              <span className="text-sm text-gray-600">{language.level}</span>
+              <span className="text-sm text-muted-foreground">{language.level}</span>
             </div>
             <Progress value={language.proficiency} className="h-2 w-full" />
           </div>
